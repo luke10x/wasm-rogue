@@ -1,0 +1,26 @@
+# vim: set tabstop=2 shiftwidth=2 expandtab:
+
+version: "3"
+services:
+  linux:
+    build:
+      context: ./linux
+    working_dir: /opt
+    entrypoint: "bash -c"
+    command:
+      - |
+        /opt/rogue5.4.4/rogue 
+  wasm:
+    build:
+      context: ./wasm
+    volumes:
+      - ./wasm:/mnt/wasm:rw
+    ports:
+      - "${WASM_ROGUE_PORT:-9989}:8080"
+    working_dir: /mnt/wasm/dist
+    entrypoint: "bash -c"
+    command:
+      - |
+        echo Starting a web server in $(pwd) for WASM Rogue
+        python3 -mhttp.server 8080
+
