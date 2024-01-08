@@ -10,60 +10,7 @@
  * See the file LICENSE.TXT for full copyright and licensing information.
  */
 
-
-#ifdef HAVE_CONFIG_H
-#ifdef PDCURSES
-#undef HAVE_UNISTD_H
-#undef HAVE_LIMITS_H
-#undef HAVE_MEMORY_H
-#undef HAVE_STRING_H
-#endif
-#include "config.h"
-#elif defined(__DJGPP__)
-#define HAVE_SYS_TYPES_H 1
-#define HAVE_PROCESS_H 1
-#define HAVE_PWD_H 1
-#define HAVE_TERMIOS_H 1
-#undef HAVE_SETGID
-#undef HAVE_GETGID
-#undef HAVE_SETUID
-#undef HAVE_GETUID
-#undef HAVE_GETPASS
-#define HAVE_SPAWNL 1
-#define HAVE_ALARM 1
-#define HAVE_ERASECHAR 1
-#define HAVE_KILLCHAR 1
-#elif defined(_WIN32)
-#define HAVE_CURSES_H
-#define HAVE_TERM_H
-#define HAVE__SPAWNL
-#define HAVE_SYS_TYPES_H
-#define HAVE_PROCESS_H
-#define HAVE_ERASECHAR 1
-#define HAVE_KILLCHAR 1
-#elif defined(__CYGWIN__)
-#define HAVE_SYS_TYPES_H 1
-#define HAVE_PWD_H 1
-#define HAVE_PWD_H 1
-#define HAVE_SYS_UTSNAME_H 1
-#define HAVE_ARPA_INET_H 1
-#define HAVE_UNISTD_H 1
-#define HAVE_TERMIOS_H 1
-#define HAVE_NCURSES_TERM_H 1
-#define HAVE_ESCDELAY
-#define HAVE_SETGID 1
-#define HAVE_GETGID 1
-#define HAVE_SETUID 1
-#define HAVE_GETUID 1
-#define HAVE_GETPASS 1
-#define HAVE_GETPWUID 1
-#define HAVE_WORKING_FORK 1
-#define HAVE_ALARM 1
-#define HAVE_SPAWNL 1
-#define HAVE__SPAWNL 1
-#define HAVE_ERASECHAR 1
-#define HAVE_KILLCHAR 1
-#else /* POSIX */
+#ifdef EMSCRIPTEN
 #define HAVE_SYS_TYPES_H 1
 #define HAVE_PWD_H 1
 #define HAVE_PWD_H 1
@@ -80,17 +27,22 @@
 #undef HAVE_SETREGID
 #undef HAVE_GETPASS
 #undef HAVE_GETPWUID
-#define HAVE_WORKING_FORK 1
+#undef HAVE_WORKING_FORK
 #define HAVE_ERASECHAR 1
 #define HAVE_KILLCHAR 1
-#ifndef _AIX
-#define HAVE_GETLOADAVG 1
-#endif
+#undef SIGHUP
+#undef SIGQUIT
+#undef SIGILL
+#undef SIGTRAP
+#undef SIGIOT
+#undef SIGEMT
+#undef SIGFPE
+#undef SIGBUS
+#undef SIGSEGV
+#undef SIGSYS
+#undef SIGTERM 
+//#define SCOREFILE "/data/rogue.scr"
 #define HAVE_ALARM 1
-#endif
-
-#ifdef __DJGPP__
-#undef HAVE_GETPWUID /* DJGPP's limited version doesn't even work as documented */
 #endif
 
 /*
