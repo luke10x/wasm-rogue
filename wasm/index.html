@@ -4,11 +4,19 @@
   <meta charset="utf-8">
 </head>
 <body>
-  <h1>rogue site</h1>
-  <div id="terminal"></div>
-  <script type="text/javascript"></script>
-  <script src="./rogue-bundle.js"></script>
-  <script src="./rogue.js"></script>
+  <h1>Demo</h1>
+
+  <script src="./rogue-bundle.js" type="module"></script>
+  
+  <webcurses-wasm-terminal program="./rogue.js"> Loading wasm </webcurses-wasm-terminal>
 </body>
+<script>
+setTimeout(() => {
+    const el = document.createElement('webcurses-wasm-terminal');
+    el.setAttribute('program', '/rogue2.js');
+    document.body.append(el);
+},1000);
+
+</script>
 </html>
 

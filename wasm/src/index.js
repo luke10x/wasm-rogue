@@ -1,5 +1,8 @@
 'use strict';
 
+import './wasm-terminal.js';
+
+/*
 import { Terminal } from 'xterm';
 import 'xterm/css/xterm.css';
 
@@ -35,4 +38,5 @@ window.Module = {
   postRun: [function() {}],
   printErr: (stderr) => console.error('STDERRPIPE:', stderr)
 };
+*/
 

@@ -15,6 +15,9 @@ services:
       context: ./wasm
     volumes:
       - ./wasm:/mnt/wasm:rw
+      # Override rogue source for local debugging
+      # Download it from: 
+      ##- ./tmp/rogue5.4.4:/opt/rogue5.4.4
     ports:
       - "${WASM_ROGUE_PORT:-9989}:8080"
     working_dir: /mnt/wasm/dist

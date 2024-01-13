@@ -23,7 +23,9 @@ export default  {
         use: [
           'style-loader', // Adds CSS to the DOM by injecting a <style> tag
           'css-loader',   // Interprets @import and url() like import/require() and will resolve them
+          'raw-loader',   // Required to run CSS into variable as text
         ],
+        include: '/node_modules/',
       },
          // https://webpack.js.org/loaders/babel-loader/#root
             {

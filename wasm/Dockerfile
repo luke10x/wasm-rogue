@@ -27,4 +27,12 @@ RUN emmake make \
     -s EMULATE_FUNCTION_POINTER_CASTS=1 \
     -s ASSERTIONS=2" \
   PROGRAM="rogue.js"
+RUN emmake make \
+  CFLAGS+=" -g -O2 " \
+  CPPFLAGS=" -include unistd.h" \
+  LIBS=" -lncurses --preload-file /opt/terminfo@/home/web_user/.terminfo \
+    -s ASYNCIFY \
+    -s EMULATE_FUNCTION_POINTER_CASTS=1 \
+    -s ASSERTIONS=2" \
+  PROGRAM="rogue2.js"
 
