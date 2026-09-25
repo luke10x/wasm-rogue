@@ -2,7 +2,6 @@
 
 import xtermCss from 'raw-loader!xterm/css/xterm.css';
 import { Terminal } from 'xterm';
-import { FitAddon } from 'xterm-addon-fit';
 
 window.emscriptenPrograms = {};
 window.terminals = {};
@@ -10,9 +9,7 @@ window.pressedKeys = {};
 class WasmTerminal extends HTMLElement {
     constructor() {
         super();
-        this.terminal = new Terminal();
-        this.fitAddon = new FitAddon();
-        this.terminal.loadAddon(this.fitAddon);
+        this.terminal = new Terminal({ cols: 80, rows: 24 });
 
         // Use Shadow DOM to encapsulate styles
         this.attachShadow({ mode: 'open' });
@@ -58,8 +55,7 @@ class WasmTerminal extends HTMLElement {
 
 						/* Add some basic styling */
 						.xterm {
-							height: 100%;
-							width: 100%;
+							display: inline-block;
 						}
 						.xterm.xterm-viewport {
                             background-color: yellow;
@@ -111,7 +107,6 @@ class WasmTerminal extends HTMLElement {
 				this.shadowRoot.appendChild(script);
 
        			this.terminal.open(this.shadowRoot.getElementById('terminal'));
-       			this.fitAddon.fit();
 
                 const viewportEl = this.shadowRoot.querySelector('.xterm-viewport');
                 viewportEl.style.backgroundColor = 'transparent';
@@ -131,17 +126,9 @@ class WasmTerminal extends HTMLElement {
 				  this.pressedKeys.push(...bytes)
 				});
 			});
-
-
-       // Adjust terminal size on window resize
-       window.addEventListener('resize', () => {
-           this.fitAddon.fit();
-       });
    }
 
    disconnectedCallback() {
-       // Clean up when the element is removed from the document
-       window.removeEventListener('resize', this.fitAddon.fit);
        this.terminal.dispose();
    }
 }
