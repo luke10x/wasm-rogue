@@ -4,7 +4,7 @@ FROM luke10x/webcurses:latest AS wasm-build-stage
 
 WORKDIR /opt
 
-RUN wget http://rogue.rogueforge.net/files/rogue5.4/rogue5.4.4-src.tar.gz
+RUN wget https://mirrors.mit.edu/macports/distfiles/rogue/rogue5.4.4-src.tar.gz
 
 RUN tar xvzf rogue5.4.4-src.tar.gz
 
@@ -12,7 +12,7 @@ WORKDIR /opt/rogue5.4.4
 
 # This is required because the files in rogue distribution is old
 # and ./configure even suggests update it
-RUN wget -O config.guess http://savannah.gnu.org/cgi-bin/viewcvs/*checkout*/config/config/config.guess
+RUN wget -O config.guess https://git.savannah.gnu.org/cgit/config.git/plain/config.guess
 
 RUN emconfigure ./configure
 
@@ -35,4 +35,3 @@ RUN emmake make \
     -s EMULATE_FUNCTION_POINTER_CASTS=1 \
     -s ASSERTIONS=2" \
   PROGRAM="rogue2.js"
-

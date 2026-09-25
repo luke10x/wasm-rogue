@@ -2,21 +2,26 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #000;
+    }
+
+    webcurses-wasm-terminal {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
 </head>
 <body>
-  <h1>Demo</h1>
-
   <script src="./rogue-bundle.js" type="module"></script>
-  
   <webcurses-wasm-terminal program="./rogue.js"> Loading wasm </webcurses-wasm-terminal>
 </body>
-<script>
-setTimeout(() => {
-    const el = document.createElement('webcurses-wasm-terminal');
-    el.setAttribute('program', '/rogue2.js');
-    document.body.append(el);
-},1000);
-
-</script>
 </html>
-
